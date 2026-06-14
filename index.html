@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英语专业毕业生去向及薪资大数据分析报告</title>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/echarts/5.3.0/echarts.min.js"></script>
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .card h3 { margin: 0; color: #7f8c8d; font-size: 0.9rem; }
+        .card .value { font-size: 1.8rem; font-weight: bold; margin: 10px 0; color: #2e7d32; }
+        .chart-container {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        .chart-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-left: 5px solid #2e7d32;
+            padding-left: 10px;
+        }
+        /* 强制给图表设置一个最小宽高，防止被浏览器挤压成0像素 */
+        #sankey-chart {
+            width: 100% !important;
+            min-height: 600px !important;
+            display: block !important;
+        }
+        .report-content {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            line-height: 1.8;
+        }
+        .report-content h2 { color: #2c3e50; margin-top: 0; }
+        .report-content ul { padding-left: 20px; }
+        .report-content li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🎓 英语专业毕业生去向与薪资分化分析报告</h1>
+        <p>基于 200 份样本数据的多维流向可视化研究</p>
+    </header>
+
+    <div class="dashboard-grid">
+        <div class="card">
+            <h3>总分析样本数</h3>
+            <div class="value">200 人</div>
+        </div>
+        <div class="card">
+            <h3>最热门就业行业</h3>
+            <div class="value" style="color: #2980b9;">互联网/科技 (44人)</div>
+        </div>
+        <div class="card">
+            <h3>毕业生整体平均薪资</h3>
+            <div class="value" style="color: #e67e22;">7,925 元/月</div>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <div class="chart-title">毕业生“初始意向 ➔ 最终行业 ➔ 薪资区间”动态流动桑基图</div>
+        <div id="sankey-chart"></div>
+    </div>
+
+    <div class="report-content">
+        <h2>💡 报告核心发现与可视化洞察</h2>
+        <p>本图表采用<strong>桑基图 (Sankey Diagram)</strong> 展现英语专业毕业生的分流趋势。流线的<strong>粗细</strong>直接代表对应流动路径的<strong>毕业生人数</strong>。将鼠标悬停在图表的线条或节点上，可以查看精确的流向和统计人数。</p>
+        <ul>
+            <li><strong>深造意愿强烈：</strong> 超过 65% 的毕业生初始计划为“国内考研”或“出国深造”。这表明面对当前就业市场压力，英语专业的同学更倾向于通过提升学历或转换专业背景来增强竞争力。</li>
+            <li><strong>体制内与大厂吸纳力强：</strong> 无论初始计划如何，最终“政府/体制内”和“互联网/科技行业”成为了最大的消化盘，总计吸纳了接近 44% 的毕业生。</li>
+            <li><strong>媒体行业薪资亮眼：</strong> 媒体/传媒行业的平均薪资最高（约 8235 元），且在该数据集 中贡献了较多的高薪（>10k）席位，打破了传统观念中英语专业只能从事教育的固有印象。</li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // 使用 window.onload 确保网页所有盒子加载完毕后再渲染图表，防止执行过快导致空白
+    window.onload = function() {
+        var chartDom = document.getElementById('sankey-chart');
+        if(!chartDom) {
+            console.error("找不到渲染容器 id: sankey-chart");
+            return;
+        }
+        
+        var myChart = echarts.init(chartDom);
+        var option = {
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove',
+                formatter: function (params) {
+                    if (params.dataType === 'node') {
+                        return params.name + ' 总计: ' + params.value + ' 人';
+                    } else {
+                        return params.data.source + ' ➔ ' + params.data.target + '<br/><b>人数: ' + params.data.value + ' 人</b>';
+                    }
+                }
+            },
+            series: [
+                {
+                    type: 'sankey',
+                    data: [
+                        {name: '直接就业'}, {name: '国内考研'}, {name: '出国深造'},
+                        {name: '互联网/科技行业'}, {name: '外贸/跨境商务'}, {name: '媒体/传媒'}, {name: '政府/体制内'}, {name: '教育/培训机构'},
+                        {name: '薪资: <6k'}, {name: '薪资: 6k-8k'}, {name: '薪资: 8k-10k'}, {name: '薪资: >10k'}
+                    ],
+                    links: [
+                        // 第一层流动：意向 ➔ 行业
+                        {source: '出国深造', target: '互联网/科技行业', value: 15},
+                        {source: '出国深造', target: '外贸/跨境商务', value: 12},
+                        {source: '出国深造', target: '媒体/传媒', value: 9},
+                        {source: '出国深造', target: '政府/体制内', value: 7},
+                        {source: '出国深造', target: '教育/培训机构', value: 10},
+                        {source: '国内考研', target: '互联网/科技行业', value: 15},
+                        {source: '国内考研', target: '外贸/跨境商务', value: 13},
+                        {source: '国内考研', target: '媒体/传媒', value: 19},
+                        {source: '国内考研', target: '政府/体制内', value: 19},
+                        {source: '国内考研', target: '教育/培训机构', value: 11},
+                        {source: '直接就业', target: '互联网/科技行业', value: 14},
+                        {source: '直接就业', target: '外贸/跨境商务', value: 15},
+                        {source: '直接就业', target: '媒体/传媒', value: 13},
+                        {source: '直接就业', target: '政府/体制内', value: 17},
+                        {source: '直接就业', target: '教育/培训机构', value: 11},
+                        
+                        // 第二层流动：行业 ➔ 薪资
+                        {source: '互联网/科技行业', target: '薪资: 6k-8k', value: 15},
+                        {source: '互联网/科技行业', target: '薪资: 8k-10k', value: 19},
+                        {source: '互联网/科技行业', target: '薪资: <6k', value: 7},
+                        {source: '互联网/科技行业', target: '薪资: >10k', value: 3},
+                        {source: '外贸/跨境商务', target: '薪资: 6k-8k', value: 16},
+                        {source: '外贸/跨境商务', target: '薪资: 8k-10k', value: 11},
+                        {source: '外贸/跨境商务', target: '薪资: <6k', value: 6},
+                        {source: '外贸/跨境商务', target: '薪资: >10k', value: 7},
+                        {source: '媒体/传媒', target: '薪资: 6k-8k', value: 13},
+                        {source: '媒体/传媒', target: '薪资: 8k-10k', value: 16},
+                        {source: '媒体/传媒', target: '薪资: <6k', value: 5},
+                        {source: '媒体/传媒', target: '薪资: >10k', value: 7},
+                        {source: '政府/体制内', target: '薪资: 6k-8k', value: 18},
+                        {source: '政府/体制内', target: '薪资: 8k-10k', value: 16},
+                        {source: '政府/体制内', target: '薪资: <6k', value: 4},
+                        {source: '政府/体制内', target: '薪资: >10k', value: 5},
+                        {source: '教育/培训机构', target: '薪资: 6k-8k', value: 9},
+                        {source: '教育/培训机构', target: '薪资: 8k-10k', value: 9},
+                        {source: '教育/培训机构', target: '薪资: <6k', value: 9},
+                        {source: '教育/培训机构', target: '薪资: >10k', value: 5}
+                    ],
+                    lineStyle: {
+                        color: 'source',
+                        curveness: 0.5,
+                        opacity: 0.3
+                    },
+                    label: {
+                        position: 'right',
+                        color: '#333',
+                        fontSize: 12
+                    },
+                    itemStyle: {
+                        borderWidth: 1,
+                        borderColor: '#aaa'
+                    }
+                }
+            ]
+        };
+
+        myChart.setOption(option);
+
+        window.addEventListener('resize', function() {
+            myChart.resize();
+        });
+    };
+</script>
+</body>
+</html>
