@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>英语专业毕业生去向及薪资大数据可视化大屏</title>
+    <title>英语专业毕业生去向选择与薪资分化大数据可视化大屏</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
     <style>
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #f0f2f5;
+            font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f4f6f9;
             margin: 0;
             padding: 0;
             color: #333;
@@ -21,14 +21,14 @@
         header {
             text-align: center;
             margin-bottom: 30px;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #1f4068 0%, #162447 100%);
             color: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(22, 36, 71, 0.15);
         }
-        header h1 { margin: 0; font-size: 2.2rem; }
-        header p { margin: 5px 0 0 0; opacity: 0.8; font-size: 1rem; }
+        header h1 { margin: 0; font-size: 2.3rem; letter-spacing: 1px; }
+        header p { margin: 8px 0 0 0; opacity: 0.8; font-size: 1.05rem; }
         
         /* 核心指标卡片样式 */
         .dashboard-grid {
@@ -39,14 +39,18 @@
         }
         .card {
             background: white;
-            padding: 20px;
+            padding: 22px;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
             text-align: center;
-            border-top: 4px solid #2a5298;
+            border-top: 4px solid #1f4068;
+            transition: transform 0.2s;
         }
-        .card h3 { margin: 0; color: #7f8c8d; font-size: 0.9rem; }
-        .card .value { font-size: 1.8rem; font-weight: bold; margin: 10px 0; color: #2e7d32; }
+        .card:hover {
+            transform: translateY(-3px);
+        }
+        .card h3 { margin: 0; color: #7f8c8d; font-size: 0.95rem; }
+        .card .value { font-size: 1.9rem; font-weight: bold; margin: 12px 0; color: #2e7d32; }
 
         /* 图表布局：一行两个小图 */
         .charts-row-two {
@@ -59,63 +63,54 @@
         .chart-container {
             background: white;
             padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
         .chart-title {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: bold;
             color: #2c3e50;
-            margin-bottom: 15px;
-            border-left: 5px solid #2a5298;
+            margin-bottom: 20px;
+            border-left: 5px solid #1f4068;
             padding-left: 10px;
         }
         .chart-box {
             width: 100%;
             height: 400px;
         }
-        /* 桑基图单独占满一行，给足够空间展示流动 */
+        
+        /* 桑基图大盒子 */
         .sankey-container {
             background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
             margin-bottom: 30px;
         }
         #sankey-chart {
             width: 100%;
-            height: 550px;
+            height: 580px;
         }
-        .report-content {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            line-height: 1.8;
-        }
-        .report-content h2 { color: #2c3e50; margin-top: 0; font-size: 1.3rem; }
-        .report-content ol { padding-left: 20px; }
-        .report-content li { margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>📊 英语专业毕业生去向选择与薪资分化大数据可视化大屏</h1>
-        <p>基于 200 份真实毕业生样本的多维度交叉分析报告</p>
+        <h1>🎓 英语专业毕业生去向选择与薪资分化大数据可视化分析</h1>
+        <p>基于老师提供的 200 份真实毕业生样本 · 多维度交叉流向研究</p>
     </header>
 
     <div class="dashboard-grid">
-        <div class="card"><h3 style="color:#7f8c8d;">总分析样本数</h3><div class="value" style="color:#2c3e50;">200 人</div></div>
-        <div class="card"><h3 style="color:#2980b9;">最热门吸纳行业</h3><div class="value" style="color:#2980b9;">互联网/科技 (44人)</div></div>
-        <div class="card"><h3 style="color:#27ae60;">整体平均起薪</h3><div class="value" style="color:#27ae60;">7,925 元/月</div></div>
-        <div class="card"><h3 style="color:#e67e22;">样本最高起薪</h3><div class="value" style="color:#e67e22;">13,385 元/月</div></div>
+        <div class="card"><h3>分析样本总数</h3><div class="value" style="color:#2c3e50;">200 人</div></div>
+        <div class="card"><h3>最热门吸纳行业</h3><div class="value" style="color:#2980b9;">互联网/科技 (44人)</div></div>
+        <div class="card"><h3>毕业生整体平均起薪</h3><div class="value" style="color:#27ae60;">7,925 元/月</div></div>
+        <div class="card"><h3>样本最高起薪</h3><div class="value" style="color:#e67e22;">13,385 元/月</div></div>
     </div>
 
     <div class="charts-row-two">
         <div class="chart-container">
-            <div class="chart-title">各行业吸纳人数与平均起薪对比（横向对比）</div>
+            <div class="chart-title">各行业吸纳人数与平均起薪对比</div>
             <div id="bar-chart" class="chart-box"></div>
         </div>
         <div class="chart-container">
@@ -125,36 +120,35 @@
     </div>
 
     <div class="sankey-container">
-        <div class="chart-title">毕业生“毕业意向 ➔ 最终行业 ➔ 薪资分布”宏观全景流动图（答辩核心图表）</div>
+        <div class="chart-title">毕业生“毕业意向 ➔ 最终行业 ➔ 薪资分布”宏观流动全景</div>
         <div id="sankey-chart"></div>
-    </div>
-
-    <div class="report-content">
-        <h2>🎤 5分钟答辩/展示演讲逻辑脚本建议</h2>
-        <ol>
-            <li><strong>引言与大盘 (1分钟)</strong>：各位老师好，本项目分析了200名英语毕业生的去向。整体均薪在7,925元，但个体差异巨大，最高起薪可达13,385元。</li>
-            <li><strong>行业与薪资竞争 (1.5分钟)</strong>：通过横向对比图发现，“互联网/科技”和“体制内”招收人数最多，但“媒体/传媒”行业以8,235元的均薪高居榜首。</li>
-            <li><strong>职业选择大流动 (1.5分钟)</strong>：桑基图直观展示了分化趋势。流线粗细代表人数。可以看出，考研失败或放弃的同学大量流入了体制内和媒体，而出国深造的同学在互联网和外贸领域竞争力更强。</li>
-            <li><strong>薪资区间与结论 (1分钟)</strong>：起薪在6k-10k之间是绝对主力（占比超72%）。本报告建议未来的学弟学妹，打破英语只能做教育的传统观念，多向新媒体、跨境商务及复合型互联网岗位分流。</li>
-        </ol>
     </div>
 </div>
 
 <script type="text/javascript">
     window.onload = function() {
-        // --- 图表 1: 行业招聘人数与均薪对比 (柱状+折线双轴) ---
+        // --- 图表 1: 行业招聘人数与均薪对比 (双轴图) ---
         var barChart = echarts.init(document.getElementById('bar-chart'));
         var barOption = {
-            tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
-            legend: { data: ['吸纳人数', '平均起薪'] },
-            xAxis: [{ type: 'category', data: ['媒体/传媒', '政府/体制内', '外贸/跨境', '互联网/科技', '教育/培训'] }],
+            tooltip: { 
+                trigger: 'axis', 
+                axisPointer: { type: 'shadow' },
+                formatter: function(params) {
+                    return params[0].name + '<br/>' + 
+                           params[0].seriesName + ': ' + params[0].value + ' 人<br/>' + 
+                           params[1].seriesName + ': ' + params[1].value + ' 元';
+                }
+            },
+            legend: { data: ['吸纳人数', '平均起薪'], right: '10%' },
+            grid: { top: '15%', bottom: '12%', left: '10%', right: '10%' },
+            xAxis: [{ type: 'category', data: ['媒体/传媒', '政府/体制内', '外贸/跨境', '互联网/科技', '教育/培训'], axisLabel: { interval: 0 } }],
             yAxis: [
-                { type: 'value', name: '人数 (人)', min: 0, max: 50, axisLabel: { formatter: '{value} 人' } },
-                { type: 'value', name: '均薪 (元)', min: 7000, max: 8500, axisLabel: { formatter: '{value} 元' } }
+                { type: 'value', name: '人数', min: 0, max: 50, axisLabel: { formatter: '{value} 人' } },
+                { type: 'value', name: '均薪', min: 7000, max: 8500, axisLabel: { formatter: '{value} 元' } }
             ],
             series: [
-                { name: '吸纳人数', type: 'bar', data: [41, 43, 40, 44, 32], itemStyle: { color: '#2a5298' } },
-                { name: '平均起薪', type: 'line', yAxisIndex: 1, data: [8234, 8042, 7996, 7746, 7527], lineStyle: { width: 3 }, itemStyle: { color: '#e67e22' } }
+                { name: '吸纳人数', type: 'bar', barWidth: '40%', data: [41, 43, 40, 44, 32], itemStyle: { color: '#1f4068' } },
+                { name: '平均起薪', type: 'line', yAxisIndex: 1, symbol: 'circle', symbolSize: 8, data: [8234, 8042, 7996, 7746, 7527], lineStyle: { width: 3, color: '#e67e22' }, itemStyle: { color: '#e67e22' } }
             ]
         };
         barChart.setOption(barOption);
@@ -163,32 +157,54 @@
         var pieChart = echarts.init(document.getElementById('pie-chart'));
         var pieOption = {
             tooltip: { trigger: 'item', formatter: '{b} : {c}人 ({d}%)' },
-            legend: { bottom: '0', data: ['薪资: <6k', '薪资: 6k-8k', '薪资: 8k-10k', '薪资: >10k'] },
+            legend: { bottom: '5', data: ['薪资: <6k', '薪资: 6k-8k', '薪资: 8k-10k', '薪资: >10k'] },
             series: [{
                 type: 'pie',
-                radius: '65%',
-                center: ['50%', '45%'],
+                radius: ['40%', '70%'], /* 改为高级环形图 */
+                avoidLabelOverlap: false,
+                itemStyle: { borderRadius: 6, borderColor: '#fff', borderWidth: 2 },
+                label: { show: true, formatter: '{b}\n({d}%)' },
                 data: [
                     { value: 31, name: '薪资: <6k', itemStyle:{color:'#e74c3c'} },
                     { value: 81, name: '薪资: 6k-8k', itemStyle:{color:'#f1c40f'} },
                     { value: 71, name: '薪资: 8k-10k', itemStyle:{color:'#3498db'} },
                     { value: 17, name: '薪资: >10k', itemStyle:{color:'#2ecc71'} }
-                ],
-                emphasis: { itemStyle: { shadowBlur: 10, shadowOffsetX: 0, shadowColor: 'rgba(0, 0, 0, 0.5)' } }
+                ]
             }]
         };
         pieChart.setOption(pieOption);
 
-        // --- 图表 3: 核心桑基图 ---
+        // --- 图表 3: 核心全景桑基图 ---
         var sankeyChart = echarts.init(document.getElementById('sankey-chart'));
         var sankeyOption = {
-            tooltip: { trigger: 'item', triggerOn: 'mousemove' },
+            tooltip: { 
+                trigger: 'item', 
+                triggerOn: 'mousemove',
+                formatter: function (params) {
+                    if (params.dataType === 'node') {
+                        return params.name + ' 总计: ' + params.value + ' 人';
+                    } else {
+                        return params.data.source + ' ➔ ' + params.data.target + '<br/><b>数量: ' + params.data.value + ' 人</b>';
+                    }
+                }
+            },
             series: [{
                 type: 'sankey',
+                layout: 'none',
+                emphasis: { focus: 'adjacency' }, /* 鼠标悬浮时高亮关联的所有流线，非常适合演示 */
                 data: [
-                    {name: '直接就业'}, {name: '国内考研'}, {name: '出国深造'},
-                    {name: '互联网/科技行业'}, {name: '外贸/跨境商务'}, {name: '媒体/传媒'}, {name: '政府/体制内'}, {name: '教育/培训机构'},
-                    {name: '薪资: <6k'}, {name: '薪资: 6k-8k'}, {name: '薪资: 8k-10k'}, {name: '薪资: >10k'}
+                    {name: '直接就业', itemStyle: {color: '#513b56'}}, 
+                    {name: '国内考研', itemStyle: {color: '#52de97'}}, 
+                    {name: '出国深造', itemStyle: {color: '#438a5e'}},
+                    {name: '互联网/科技行业', itemStyle: {color: '#2b580c'}}, 
+                    {name: '外贸/跨境商务', itemStyle: {color: '#639a67'}}, 
+                    {name: '媒体/传媒', itemStyle: {color: '#fbd46d'}}, 
+                    {name: '政府/体制内', itemStyle: {color: '#ff7e67'}}, 
+                    {name: '教育/培训机构', itemStyle: {color: '#928a97'}},
+                    {name: '薪资: <6k', itemStyle: {color: '#e74c3c'}}, 
+                    {name: '薪资: 6k-8k', itemStyle: {color: '#f1c40f'}}, 
+                    {name: '薪资: 8k-10k', itemStyle: {color: '#3498db'}}, 
+                    {name: '薪资: >10k', itemStyle: {color: '#2ecc71'}}
                 ],
                 links: [
                     {source: '出国深造', target: '互联网/科技行业', value: 15},
@@ -227,13 +243,13 @@
                     {source: '教育/培训机构', target: '薪资: <6k', value: 9},
                     {source: '教育/培训机构', target: '薪资: >10k', value: 5}
                 ],
-                lineStyle: { color: 'source', curveness: 0.5, opacity: 0.25 },
-                label: { position: 'right', color: '#333', fontSize: 12 }
+                lineStyle: { color: 'source', curveness: 0.5, opacity: 0.28 },
+                label: { position: 'right', color: '#333', fontSize: 12, fontWeight: 'bold' }
             }]
         };
         sankeyChart.setOption(sankeyOption);
 
-        // 统一监听窗口大小调整，所有图表自适应缩放
+        // 自动响应窗口缩放
         window.addEventListener('resize', function() {
             barChart.resize();
             pieChart.resize();
