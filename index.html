@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>英语专业毕业生去向选择与薪资分化大数据分析报告</title>
+    <title>英语专业毕业生去向选择与薪资分化数据新闻报告</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
     <style>
         body {
@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
             color: #334155;
-            display: flex; /* 双栏控制台布局 */
+            display: flex; /* 现代化控制台布局 */
         }
         
         /* 左侧常驻固定目录导航栏 */
@@ -61,7 +61,7 @@
             color: white;
         }
         
-        /* 右侧主要流式叙事大屏 */
+        /* 右侧流式叙事大屏 */
         .main-content {
             margin-left: 280px;
             margin-right: 0;
@@ -71,7 +71,7 @@
             scroll-behavior: smooth;
         }
         
-        /* 叙事封面 */
+        /* 报告大封面 */
         .story-header {
             background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
             color: white;
@@ -101,7 +101,7 @@
         .metric-card h3 { margin: 0; color: #64748b; font-size: 0.88rem; }
         .metric-card .value { font-size: 1.7rem; font-weight: 700; margin-top: 10px; color: #0f172a; }
 
-        /* 叙事章节样式 */
+        /* 叙事章节通用样式 */
         .narrative-section {
             background: white;
             padding: 40px;
@@ -127,7 +127,7 @@
             text-align: justify;
         }
         
-        /* 左右对称的图文排版 */
+        /* 图文对称网格 */
         .content-grid {
             display: grid;
             grid-template-columns: 1.25fr 0.85fr;
@@ -147,45 +147,97 @@
         .insights-box h4 { margin: 0 0 15px 0; color: #0f172a; font-size: 1.1rem; font-weight: 700; }
         .insights-box ul { padding-left: 18px; margin: 0; }
         .insights-box li { margin-bottom: 12px; font-size: 0.95rem; line-height: 1.65; color: #475569; }
+
+        /* 核心结论高亮布局 */
+        .conclusion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .conclusion-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            border-top: 4px solid #10b981;
+        }
+        .conclusion-card h4 { margin: 0 0 10px 0; color: #0f172a; font-size: 1.1rem; }
+        .conclusion-card p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: #475569; text-align: justify; }
+
+        /* 展望建议列表 */
+        .prospect-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .prospect-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #334155;
+        }
+        .prospect-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .prospect-list strong { color: #0f172a; font-size: 1.1rem; display: block; margin-bottom: 5px; }
     </style>
 </head>
 <body>
 
     <nav class="sidebar">
-        <div class="sidebar-brand">🗂️ 报告章节目录</div>
+        <div class="sidebar-brand">🗂️ 报告章节索引</div>
         <ul class="sidebar-menu">
-            <li><a href="#overview">⏱️ 全景数据大盘</a></li>
+            <li><a href="#overview">⏱️ 全景数据面板</a></li>
+            <li><a href="#research-intro">📖 第零幕：项目研究概述</a></li>
             <li><a href="#chapter1">🎯 第一幕：象牙塔理想分布</a></li>
-            <li><a href="#chapter2">💼 第二幕：行业规模与均薪博弈</a></li>
-            <li><a href="#chapter3">📊 第三幕：行业起薪波动与极值</a></li>
-            <li><a href="#chapter4">🗺️ 第四幕：双向交叉路径热力分布</a></li>
-            <li><a href="#chapter5">🌊 核心幕：生命周期因果大长河</a></li>
+            <li><a href="#chapter2">💼 第二幕：行业吸纳与博弈</a></li>
+            <li><a href="#chapter3">📊 第三幕：薪资跨度波动特征</a></li>
+            <li><a href="#chapter4">🗺️ 第四幕：交叉决策起薪矩阵</a></li>
+            <li><a href="#chapter5">🌊 核心幕：生命周期因果长河</a></li>
+            <li><a href="#conclusions">✨ 第六幕：核心结论综述</a></li>
+            <li><a href="#prospects">🚀 第七幕：英专生未来就业展望</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div id="overview" class="story-header">
-            <h1>逃离还是坚守？英语专业毕业生去向选择与薪资分化数据故事</h1>
-            <p>基于 200 份真实校招追踪样本的多维生命周期时间演变分析报告</p>
+            <h1>逃离还是坚守？英语专业毕业生去向选择与薪资分化大数据可视化分析报告</h1>
+            <p>基于 200 份真实校招追踪样本的多维生命周期时间演变研究</p>
         </div>
 
         <div class="dashboard-grid">
             <div class="metric-card"><h3>覆盖分析总样本</h3><div class="value">200 人</div></div>
             <div class="metric-card"><h3>毕业生整体均薪</h3><div class="value" style="color:#10b981;">7,925 元/月</div></div>
-            <div class="metric-card"><h3>破局上限高薪</h3><div class="value" style="color:#d97706;">13,385 元/月</div></div>
+            <div class="metric-card"><h3>破局上限最高起薪</h3><div class="value" style="color:#d97706;">13,385 元/月</div></div>
             <div class="metric-card"><h3>统计学检验异常值</h3><div class="value" style="color:#ef4444;">3 个</div></div>
         </div>
 
+        <section id="research-intro" class="narrative-section">
+            <div class="section-title">第零幕：项目研究概述</div>
+            <div class="section-desc">
+                近年来，伴随着外语类人才培养同质化趋势以及宏观行业政策变动，英语专业毕业生的就业路径与财富分配正面临深刻的洗牌。传统观念往往陷入“英语生只能从事教育、外贸，出路狭窄”的刻板成见中。
+                <br><br>
+                本研究旨在通过对 200 份真实校招追踪样本的深度清洗和数据挖掘，<strong>全面还原英语专业毕业生从“毕业初始意向”到“最终落实行业”，再到“首份起薪回报”的完整生命周期演变</strong>。本作品依托时间轴叙事逻辑，试图探明毕业决策与财富分配之间是否存在因果必然联系，进而打破信息不对称，为后续高校外语人才的专业卡位与高质量就业提供科学、落地的数据驱动策略指南。
+            </div>
+        </section>
+
         <section id="chapter1" class="narrative-section">
             <div class="section-title">第一幕：象牙塔的憧憬与分化 ➔ 初始计划结构</div>
-            <div class="section-desc">故事开篇于毕业前夕。面对严峻的市场竞争，纯就业人群受到了学历深造和国际化视野的强烈分流，超六成毕业生选择主动延缓进入市场。</div>
+            <div class="section-desc">故事开篇于大四毕业前夕。面对多变的市场，延续学术路线和获取国际化视野分流了大量的纯就业人群，超六成毕业生选择主动延缓进入市场。</div>
             <div class="content-grid">
                 <div><div id="pie-chart" class="chart-container"></div></div>
                 <div class="insights-box">
-                    <h4>💡 最初的理智分布</h4>
+                    <h4>💡 意向分布结构</h4>
                     <ul>
-                        <li>计划<strong>国内考研（77人）</strong>与<strong>出国深造（53人）</strong>的合并占比高达 <strong>65%</strong>，成为了大四学生的绝对首选。</li>
-                        <li><strong>直接就业群体</strong>沦为 <strong>35%</strong>（70人）的少数派，揭示了普遍通过提高学历外壳寻求竞争安全感的群体心理。</li>
+                        <li>计划<strong>国内考研（77人）</strong>与<strong>出国深造（53人）</strong>的合并占比高达 <strong>65%</strong>，成为了毕业前的第一大诉求。</li>
+                        <li><strong>直接就业群体</strong>沦为 <strong>35%</strong>（70人）的少数派，揭示出外语学生群体普遍希望通过提高学历外壳来寻求市场竞争安全感的社会心态。</li>
                     </ul>
                 </div>
             </div>
@@ -193,15 +245,15 @@
 
         <section id="chapter2" class="narrative-section">
             <div class="section-title">第二幕：现实的十字路口 ➔ 行业吸纳规模与均薪拉锯</div>
-            <div class="section-desc">走出校园，200名毕业生被5大行业重新消化。在这里，岗位的吸纳容量和经济回报展开了激烈的地盘拉锯。</div>
+            <div class="section-desc">走出校园，这 200 名毕业生被 5 大行业重新消化。在这里，岗位的吸纳容量和第一份薪水的回报额度展开了激烈的地盘拉锯。</div>
             <div class="content-grid">
                 <div><div id="bar-chart" class="chart-container"></div></div>
                 <div class="insights-box">
-                    <h4>💡 行业视角的博弈冲突</h4>
+                    <h4>💡 市场规模与回报分配</h4>
                     <ul>
-                        <li><strong>互联网科技行业（44人）</strong>消化规模高居第一，但起薪均薪（7,746元）却滑落至倒数第二，纯外语工具型岗位的议价权红利正逐渐见顶。</li>
-                        <li><strong>媒体/传媒行业（41人）</strong>异军突起，在大规模招人的同时以 <strong>8,234元</strong> 的均薪高歌猛进，冠绝全场。</li>
-                        <li><strong>教育培训行业（32人）</strong>容纳度与起薪均薪（7,527元）均双双垫底，显现出宏观大退潮的特征。</li>
+                        <li><strong>互联网科技行业（44人）</strong>消化规模高居第一，但起薪均薪（7,746元）却滑落至倒数第二，纯外语功能型岗位的红利正逐渐见顶。</li>
+                        <li><strong>媒体/传媒行业（41人）</strong>异军突起，在大规模吸纳人才的同时，以 <strong>8,234元</strong> 的平均起薪高歌猛进，冠绝全场。</li>
+                        <li><strong>教育培训行业（32人）</strong>容纳度与起薪均薪（7,527元）均双双垫底，显现出降温特征。</li>
                     </ul>
                 </div>
             </div>
@@ -209,15 +261,15 @@
 
         <section id="chapter3" class="narrative-section">
             <div class="section-title">第三幕：薪资的现实波动 ➔ 各行业起薪波动区间与异常值诊断</div>
-            <div class="section-desc">打破均薪的迷雾，通过标准统计箱线图还原每个行业的真实薪资下限、跨度与异常极值。数据直接呈现出行业壁垒和两极撕裂的真相。</div>
+            <div class="section-desc">打破均薪的迷雾，通过标准统计箱线图还原每个行业的真实薪资下限、中位数、财富跨度与统计学检验异常极值点。数据直接呈现出行业壁垒和两极撕裂的真相。</div>
             <div class="content-grid">
                 <div><div id="box-chart" class="chart-container"></div></div>
                 <div class="insights-box">
-                    <h4>💡 薪资区间的震荡事实</h4>
+                    <h4>💡 薪资区间的震荡分布</h4>
                     <ul>
-                        <li><strong>媒体行业最为稳健：</strong> 其薪资箱体重心整体偏高，且下限极高（4,692元），说明其薪资回馈普遍丰厚且无极端低薪。</li>
-                        <li><strong>教培行业的下限探底：</strong> 整个教育机构箱体被严重拉长，薪资下限下坠至全场最低的 <strong>2,127元</strong>，两极分化极其剧烈。</li>
-                        <li><strong>三大异常值诊断：</strong> 互联网出现一个 13,384元 的超强极高薪和一个 2,712元 的极低薪；政府体制内则存在一个 13,028元 的极高薪突围点。</li>
+                        <li><strong>媒体行业最为稳健：</strong> 其薪资中位数重心整体偏高，且下限极高（4,692元），说明其薪资回馈普遍丰厚且内部无极端低薪。</li>
+                        <li><strong>教培行业的下限探底：</strong> 整个教育机构箱体跨度极大，薪资下限下坠至全场最低的 <strong>2,127元</strong>，两极分化极其剧烈。</li>
+                        <li><strong>三个异常值数据：</strong> 互联网出现一个 13,384元 的极高薪和一个 2,712元 的极低薪；政府体制内则存在一个 13,028元 的突围点。</li>
                     </ul>
                 </div>
             </div>
@@ -225,26 +277,66 @@
 
         <section id="chapter4" class="narrative-section">
             <div class="section-title">第四幕：必然联系的穿透 ➔ 初始决策与最终行业交叉薪资热力矩阵</div>
-            <div class="section-desc">探究薪资高低与最初选择是否有必然联系？本热力图将意向与行业彻底交叉，颜色越深代表真实平均起薪越高。它清晰显现了起薪在决策矩阵中的必然规律。</div>
+            <div class="section-desc">探究薪资高低与最初选择是否有必然联系？本热力图将初始意向与最终行业进行全面网格交叉，矩阵颜色越深代表该抉择组合下的真实平均起薪越高。</div>
             <div class="content-grid">
                 <div><div id="heatmap-chart" class="chart-container"></div></div>
                 <div class="insights-box">
-                    <h4>💡 黄金交叉路径的揭示</h4>
+                    <h4>💡 决策组合的回报效能</h4>
                     <ul>
-                        <li><strong>黄金交叉路径 A：</strong> 【直接就业 ➔ 外贸跨境商务】，均薪高达 <strong>8,622.12元</strong>。事实证明，在外贸赛道，提早一年积累落地实战经验的议价红利远超学历升级。</li>
-                        <li><strong>黄金交叉路径 B：</strong> 【国内考研 ➔ 政府体制内/媒体】，均薪分别卡位 <strong>8,508.27元</strong> 和 <strong>8,417.35元</strong>，展现出本土高学历在体制与主流大厂的强大红利。</li>
-                        <li><strong>最需警惕的泡沫低谷：</strong> 【出国深造 ➔ 教育培训】，起薪仅有 <strong>6,589.36元</strong>，昂贵的留学背景若流向红利消退的教培，贬值风险最高。</li>
+                        <li><strong>决策组合 A：</strong> 【直接就业 ➔ 外贸跨境商务】，均薪高达 <strong>8,622.12元</strong>。事实证明，在外贸赛道提早积累商务落地的谈判经验，转化出的薪资溢价远超纸上谈兵。</li>
+                        <li><strong>决策组合 B：</strong> 【国内考研 ➔ 政府体制内/媒体】，均薪分别卡位 <strong>8,508.27元</strong> 和 <strong>8,417.35元</strong>，展现出本土高学历在稳定岗位中的高底线防御力。</li>
+                        <li><strong>贬值低谷组合：</strong> 【出国深造 ➔ 教育培训】，起薪仅有 <strong>6,589.36元</strong>。</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <section id="chapter5" class="narrative-section">
-            <div class="section-title">核心核心幕：命运的长河 ➔ 200位毕业生的因果演变长河</div>
-            <div class="section-desc">将各层级逻辑节点完全编织。中间行业节点根据毕业生的初始背景进行了重塑。高薪池中（最右侧绿色节点）的那些同学，最初来自哪里，在此处一览无余。</div>
+            <div class="section-title">核心幕：命运的长河 ➔ 200位毕业生的因果演变全景</div>
+            <div class="section-desc">将各层级逻辑节点完全编织。中间行业节点根据毕业生的初始背景进行了重塑。高薪池中（最右侧绿色节点）的那些同学，最初来自哪里，在此处清晰可循。</div>
             <div class="content-grid content-full">
                 <div><div id="sankey-chart"></div></div>
             </div>
+        </section>
+
+        <section id="conclusions" class="narrative-section">
+            <div class="section-title">第六幕：核心结论综述</div>
+            <div class="section-desc">基于对本数据集的多维交叉检验，项目得出以下三项具有显著因果规律的分析结论：</div>
+            <div class="conclusion-grid">
+                <div class="conclusion-card">
+                    <h4>1. 留学生群体的财富“两极撕裂”</h4>
+                    <p>数据表明，出国深造（Study Abroad）群体的均薪（7,436.89元）在三大选择中意外垫底。虽然该群体斩获了全场最高起薪，但低薪率（<6k）高居全场第一。高成本留学背景若回国继续扎堆红利退潮的传统教培，面临着极高的学历贬值和生存风险。</p>
+                </div>
+                <div class="conclusion-card">
+                    <h4>2. 实战派在跨境贸易中的全面破局</h4>
+                    <p>在起薪突破 10k 以上的 17 名高薪获益者中，人数最多的是【外贸跨境（就业出身）】的 4 名同学。这表明在外向型经济岗位中，市场对早期社会经验和实操谈判能力的看重程度远超学历标签，直接就业具备强爆发力。</p>
+                </div>
+                <div class="conclusion-card">
+                    <h4>3. 考研对体制内与传媒的溢价统治</h4>
+                    <p>国内考研群体整体均薪（8,152.93元）高居第一，流向极其紧凑。桑基图显示他们放弃学术后大量卡位“政府体制内”和“媒体/传媒”，并依靠学历溢价分别拿到了8,508元和8,417元的高底线均薪，防守实力惊人。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="prospects" class="narrative-section" style="border-top: 4px solid #10b981;">
+            <div class="section-title" style="border-left-color: #10b981;">第七幕：英专生未来就业展望与行动指南</div>
+            <div class="section-desc">
+                本研究的终极目的，是借由大数据的实证结论，指导英语专业的同学们打破信息壁垒，进行精准、理性的职业生涯规划。基于上述因果模型，我们为未来的英语专业学子提出以下三条黄金破局展望：
+            </div>
+            <ul class="prospect-list">
+                <li>
+                    <strong>一、 转换传统偏见，拥抱复合新媒体赛道</strong>
+                    大数据实证表明，媒体/传媒行业正在扮演技术革新下的薪资天花板角色（均薪达8,234元，低薪率极低）。英语专业生应停止扎堆传统的教育培训，主动向“外语+新媒体运营”、“海外短视频内容出海”等复合传媒岗位转化，实现薪资的降维突破。
+                </li>
+                <li>
+                    <strong>二、 提升实战壁垒，提前布局落地的跨境商务</strong>
+                    如果自身不打算走学术路线，建议大四阶段果断舍弃盲目留学的执念，以“行动派”姿态直接进入跨境电商、国际供应链管理等前线。外贸行业具备高佣金与高爆发性，早一年的实战经验沉淀，能直接转化为对抗高学历内卷的坚实护城河。
+                </li>
+                <li>
+                    <strong>三、 强化本土学历防御力，对准体制与大厂核心品牌</strong>
+                    研究数据表明本土考研生在用人市场上底线防守力极强。对于追求低风险的同学，应当将考研作为长线战略，但研究生阶段应重点积累行政素养和品牌公关能力，毕业后对准政府体制内和互联网核心管理赛道，最大化发挥本土高学历的溢价红利。
+                </li>
+            </ul>
         </section>
     </main>
 
@@ -284,7 +376,7 @@
             ]
         });
 
-        // --- 3. 新增：行业薪资高级箱线图与异常值 ---
+        // --- 3. 行业薪资高级箱线图与异常值 ---
         var boxChart = echarts.init(document.getElementById('box-chart'));
         boxChart.setOption({
             tooltip: { trigger: 'item', axisPointer: { type: 'shadow' } },
@@ -306,16 +398,16 @@
                 {
                     name: '检验异常值点', type: 'scatter',
                     data: [
-                        [1, 13028.88], /* Gov outlier */
-                        [3, 2712.97],  /* Tech outlier 1 */
-                        [3, 13384.76]  /* Tech outlier 2 */
+                        [1, 13028.88],
+                        [3, 2712.97],
+                        [3, 13384.76]
                     ],
                     itemStyle: { color: '#ef4444' }, symbolSize: 10
                 }
             ]
         });
 
-        // --- 4. 新增：双向决策决策薪资热力图 ---
+        // --- 4. 双向决策决策薪资热力图 ---
         var heatmapChart = echarts.init(document.getElementById('heatmap-chart'));
         heatmapChart.setOption({
             tooltip: { position: 'top', formatter: function(p) { return p.name + ' 平均起薪: ' + p.value[2] + ' 元'; } },
