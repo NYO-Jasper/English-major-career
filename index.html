@@ -3,220 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>逃离还是坚守？英语专业毕业生去向选择与薪资分化数据故事</title>
+    <title>英语专业毕业生去向选择与薪资分化数据故事</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
     <style>
         body {
             font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
-            background-color: #f6f8fa;
+            background-color: #f1f5f9;
             margin: 0;
             padding: 0;
-            color: #24292e;
-        }
-        .story-container {
-            max-width: 1150px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            color: #334155;
+            display: flex; /* 双栏布局 */
         }
         
-        /* 故事长封面 */
-        .story-cover {
-            text-align: center;
-            padding: 70px 40px;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #f8fafc;
-            border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.15);
-            margin-bottom: 50px;
+        /* 左侧固定目录导航栏 */
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            background-color: #0f172a;
+            color: #94a3b8;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+            padding: 30px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
-        .story-cover .meta-tag {
-            display: inline-block;
-            background: #d97706;
+        .sidebar-brand {
             color: white;
-            padding: 5px 14px;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            border-radius: 30px;
-            margin-bottom: 20px;
-            font-weight: bold;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 35px;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 15px;
         }
-        .story-cover h1 { margin: 0; font-size: 2.6rem; font-weight: 800; line-height: 1.4; }
-        .story-cover p { margin: 15px 0 0 0; opacity: 0.8; font-size: 1.2rem; font-weight: 300; }
-        
-        /* 垂直时间流叙事章节 */
-        .narrative-chapter {
-            position: relative;
-            background: white;
-            padding: 45px;
-            border-radius: 20px;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.015);
-            margin-bottom: 60px;
-            border: 1px solid #e2e8f0;
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
         }
-        .narrative-chapter::after {
-            content: '';
-            position: absolute;
-            bottom: -60px;
-            left: 50%;
-            width: 4px;
-            height: 60px;
-            background: linear-gradient(180deg, #1e293b 0%, rgba(30,41,59,0.05) 100%);
+        .sidebar-menu li {
+            margin-bottom: 8px;
+        }
+        .sidebar-menu a {
             display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s;
         }
-        .narrative-chapter:last-of-type::after { display: none; }
-        
-        .chapter-badge {
-            font-size: 0.85rem;
-            background: #e2e8f0;
-            color: #475569;
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
+        .sidebar-menu a:hover {
+            background-color: #1e293b;
+            color: white;
         }
-        .chapter-title { font-size: 1.7rem; font-weight: 800; color: #0f172a; margin: 0 0 18px 0; }
-        .chapter-lead { font-size: 1.1rem; line-height: 1.8; color: #334155; margin-bottom: 35px; text-align: justify; }
         
-        /* 左右图文混排 */
-        .layout-grid {
+        /* 右侧主要长内容区域 */
+        .main-content {
+            margin-left: 280px; /* 给左侧留出空间 */
+            flex: 1;
+            padding: 40px;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        /* 叙事长封面 */
+        .story-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            color: white;
+            padding: 45px 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+            margin-bottom: 40px;
+        }
+        .story-header h1 { margin: 0; font-size: 2.1rem; font-weight: 800; }
+        .story-header p { margin: 10px 0 0 0; opacity: 0.8; font-size: 1.05rem; }
+        
+        /* 数据概览小面板 */
+        .dashboard-grid {
             display: grid;
-            grid-template-columns: 1.25fr 0.85fr;
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            text-align: center;
+            border-top: 4px solid #1e3a8a;
+        }
+        .metric-card h3 { margin: 0; color: #64748b; font-size: 0.85rem; text-transform: uppercase; }
+        .metric-card .value { font-size: 1.6rem; font-weight: 700; margin-top: 8px; color: #0f172a; }
+
+        /* 叙事章节结构 */
+        .narrative-section {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+            scroll-margin-top: 40px; /* 防止导航遮挡 */
+        }
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 15px 0;
+            border-left: 5px solid #1e3a8a;
+            padding-left: 12px;
+        }
+        .section-desc {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #475569;
+            margin-bottom: 30px;
+        }
+        
+        /* 图文网格布局 */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.8fr;
+            gap: 30px;
             align-items: center;
         }
-        .layout-full { grid-template-columns: 1fr; }
-        .chart-box { width: 100%; height: 440px; }
-        #sankey-chart { width: 100%; height: 680px; }
+        .content-full { grid-template-columns: 1fr; }
+        .chart-container { width: 100%; height: 400px; }
+        #sankey-chart { width: 100%; height: 650px; }
         
-        /* 深度故事注解框 */
-        .narrative-annotations {
+        .insights-box {
             background: #f8fafc;
-            padding: 30px;
-            border-radius: 16px;
-            border-left: 6px solid #334155;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.01);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
         }
-        .narrative-annotations h4 { margin: 0 0 15px 0; color: #0f172a; font-size: 1.15rem; font-weight: 700; }
-        .narrative-annotations ul { padding-left: 18px; margin: 0; }
-        .narrative-annotations li { margin-bottom: 14px; font-size: 0.98rem; line-height: 1.65; color: #475569; }
-        .narrative-annotations strong { color: #0f172a; }
-        
-        .story-epilogue {
-            background: #0f172a;
-            color: #f8fafc;
-            padding: 50px 40px;
-            border-radius: 24px;
-            margin-top: 50px;
-            text-align: center;
-        }
-        .story-epilogue h2 { font-size: 1.6rem; font-weight: 700; color: white; margin-top: 0; }
-        .story-epilogue p { max-width: 850px; margin: 20px auto 0 auto; opacity: 0.8; line-height: 1.8; font-size: 1.1rem; text-align: justify; }
+        .insights-box h4 { margin: 0 0 12px 0; color: #0f172a; font-size: 1.05rem; }
+        .insights-box ul { padding-left: 18px; margin: 0; }
+        .insights-box li { margin-bottom: 10px; font-size: 0.92rem; line-height: 1.6; color: #475569; }
     </style>
 </head>
 <body>
 
-<div class="story-container">
-    <div class="story-cover">
-        <div class="meta-tag">毕业生生命周期演变分析</div>
-        <h1>🎓 逃离还是坚守？</h1>
-        <h2 style="font-size:1.6rem; font-weight:400; margin:12px 0 0 0; opacity:0.9;">200位英语专业毕业生的意向变迁与职场起薪长河</h2>
-        <p>一项基于逻辑时间叙事模型的群体行为学与财富分配跨界研究</p>
-    </div>
+    <nav class="sidebar">
+        <div class="sidebar-brand">📊 报告目录索引</div>
+        <ul class="sidebar-menu">
+            <li><a href="#overview">⏱️ 全景数据概览</a></li>
+            <li><a href="#chapter1">🎯 第一幕：象牙塔理想分布</a></li>
+            <li><a href="#chapter1-5">⚡ 异常发现：均薪撕裂状态</a></li>
+            <li><a href="#chapter2">💼 第二幕：行业吸纳与博弈</a></li>
+            <li><a href="#chapter2-5">🗺️ 交叉透视：决策效能谱系</a></li>
+            <li><a href="#chapter3">🌊 核心幕：生命周期因果长河</a></li>
+        </ul>
+    </nav>
 
-    <div class="narrative-chapter">
-        <div class="chapter-badge">时间节点 T1：毕业前夕的抉择</div>
-        <div class="chapter-title">第一幕：象牙塔的憧憬与分化 ➔ 初始计划分布</div>
-        <div class="chapter-lead">
-            故事开篇于大四毕业前夕。面对人生的分水岭，这 200 名英语专业的同学在象牙塔中做出了最初的试探。在学历竞争日益激烈的今天，“毕业即就业”的传统路径正受到学术深造和国际化视野的强烈分流。
+    <main class="main-content">
+        <div id="overview" class="story-header">
+            <h1>逃离还是坚守？英语专业毕业生去向选择与薪资分化数据故事</h1>
+            <p>基于 200 份真实校招追踪样本的多维时间演变分析报告</p>
         </div>
-        <div class="layout-grid">
-            <div><div id="pie-chart" class="chart-box"></div></div>
-            <div class="narrative-annotations">
-                <h4>📊 理想分布的底层事实</h4>
-                <ul>
-                    <li><strong>深造成为绝对的主流选择：</strong> 计划“国内考研”（77人）与“出国深造”（53人）的人数总计占比高达 <strong>65%</strong>。这表明超过六成的同学希望通过提高学历壁垒或转换专业赛道，来对冲未来的就业风险。</li>
-                    <li><strong>直接就业者的少数派坚守：</strong> 只有 <strong>35%</strong> 的群体（70人）选择在毕业之初直接步入多变的职场大熔炉。</li>
-                </ul>
+
+        <div class="dashboard-grid">
+            <div class="metric-card"><h3>覆盖分析样本</h3><div class="value">200 人</div></div>
+            <div class="metric-card"><h3>整体平均起薪</h3><div class="value" style="color:#10b981;">7,925 元/月</div></div>
+            <div class="metric-card"><h3>样本最高起薪</h3><div class="value" style="color:#d97706;">13,385 元/月</div></div>
+            <div class="metric-card"><h3>诊断异常值数</h3><div class="value" style="color:#ef4444;">3 个</div></div>
+        </div>
+
+        <section id="chapter1" class="narrative-section">
+            <div class="section-title">第一幕：象牙塔的憧憬与分化 ➔ 初始计划分布</div>
+            <div class="section-desc">故事开篇于毕业前夕。在竞争压力下，延续学术路线和获取国际化视野分流了大量的纯就业人群。</div>
+            <div class="content-grid">
+                <div><div id="pie-chart" class="chart-container"></div></div>
+                <div class="insights-box">
+                    <h4>💡 结构特征描述</h4>
+                    <ul>
+                        <li>计划国内考研（77人）与出国深造（53人）的人数合并占比高达 <strong>65%</strong>，深造成为毕业前夕的第一大意愿。</li>
+                        <li>直接就业群体仅占 <strong>35%</strong>（70人），表明超六成毕业生选择主动提高学历壁垒来对冲就业市场的无序风险。</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="narrative-chapter">
-        <div class="chapter-badge">时间节点 T1.5：理想背后的财富博弈</div>
-        <div class="chapter-title">过渡幕：海归的围城与两极分化 ➔ 初始计划的起薪分布区间</div>
-        <div class="chapter-lead">
-            然而，理想的蓝图是否能换回等额的经济回馈？当我们打破均薪的迷雾，把这 200 位同学毕业后的起薪分布平铺出来时，一个巨大的戏剧性冲突浮出水面：家庭投入成本最高的“出国深造”群体，财富分布呈现出极度的撕裂。
-        </div>
-        <div class="layout-grid">
-            <div><div id="scatter-chart" class="chart-box"></div></div>
-            <div class="narrative-annotations">
-                <h4>⚡ 统计事实与均薪冲突</h4>
-                <ul>
-                    <li><strong>留学生的两极撕裂：</strong> 数据显示，全场的最高起薪（13,385元/月）由出国留学的同学斩获；但全场的最低起薪（2,128元/月）同样属于出国留学的群体。留学生群体正面临严重的学历极化。</li>
-                    <li><strong>国内考研的稳健底线：</strong> 相比之下，国内考研群体的起薪整体重心偏高，其均薪（8,153元）在三大初始意向中位居第一，展示了本土学历在当前用人单位中较强的底线防御能力。</li>
-                </ul>
+        <section id="chapter1-5" class="narrative-section">
+            <div class="section-title">过渡幕：异常波动诊断 ➔ 三大计划的薪资极值与整体均薪跨度</div>
+            <div class="section-desc">将各计划路线毕业后的真实薪资指标进行横向罗列。数据直接暴露出多维特征的分化和两极撕裂。</div>
+            <div class="content-grid">
+                <div><div id="scatter-chart" class="chart-container"></div></div>
+                <div class="insights-box">
+                    <h4>💡 异常值与均薪冲突</h4>
+                    <ul>
+                        <li><strong>留学生的高低两极极化：</strong> 出国深造群体虽然包揽了全场最高薪（13,385元），但全场最低起薪（2,127元）也出现在该群体。</li>
+                        <li><strong>国内考研的底线稳健性：</strong> 国内考研群体薪资中枢最为紧凑，且均薪（8,153元）高居第一，在当前市场具备更稳定的议价防御力。</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="narrative-chapter">
-        <div class="chapter-badge">时间节点 T2：毕业当下的现实对撞</div>
-        <div class="chapter-title">第二幕：现实的十字路口 ➔ 行业吸纳规模与均薪博弈</div>
-        <div class="chapter-lead">
-            当时间推移到毕业的节点，最初的梦想撞上了多变的市场供需。这 200 位同学最终被分流到了 5 大主要行业。在这里，招聘岗位的“消化规模”与薪资的“高低天花板”展开了激烈的地盘拉锯。
-        </div>
-        <div class="layout-grid">
-            <div><div id="bar-chart" class="chart-box"></div></div>
-            <div class="narrative-annotations">
-                <h4>🔍 行业碰撞中的市场规律</h4>
-                <ul>
-                    <li><strong>互联网大厂的规模陷阱：</strong> 互联网/科技行业最终消化了最多的毕业生（44人），但在均薪竞争中，它却以 7,746 元的表现跌至倒数第二。</li>
-                    <li><strong>教育培训机构的时代大退潮：</strong> 曾经的吸金巨头教育行业在本次调查中容纳人数垫底（32人），且起薪天花板最低（均薪7,527元）。</li>
-                    <li><strong>媒体传媒的异军突起：</strong> 媒体/传媒行业在保持 41 人高吸纳力的同时，以 8,234 元的平均起薪冠绝全场，成为了新文科时代下表现强劲的赛道。</li>
-                </ul>
+        <section id="chapter2" class="narrative-section">
+            <div class="section-title">第二幕：现实的十字路口 ➔ 行业吸纳规模与均薪博弈</div>
+            <div class="section-desc">当初始意向撞上用人市场，200位毕业生被重新吸纳和消化。岗位的消化能力和起薪水平表现出明显的分野。</div>
+            <div class="content-grid">
+                <div><div id="bar-chart" class="chart-container"></div></div>
+                <div class="insights-box">
+                    <h4>💡 行业吸纳规律说明</h4>
+                    <ul>
+                        <li><strong>互联网科技行业（44人）</strong>吸纳人数最多，但均薪（7,746元）退居全行业倒数第二。</li>
+                        <li><strong>媒体/传媒行业（41人）</strong>在保持强吸纳力的同时，以 <strong>8,234元</strong> 的平均起薪高居全行业第一。</li>
+                        <li><strong>教育培训机构（32人）</strong>吸纳规模垫底，且起薪均薪（7,527元）全场最低，显现出降温特征。</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="narrative-chapter">
-        <div class="chapter-badge">时间节点 T2.5：出身背景的能力映射</div>
-        <div class="chapter-title">过渡幕：赛道卡位战 ➔ 三大出身群体的行业起薪表现</div>
-        <div class="chapter-lead">
-            既然不同意向群体的均薪有别，不同行业的回报也不同，那么当个人背景与最终就业行业交叉对撞时，谁在哪个赛道里获得了更好的经济回报？
-        </div>
-        <div class="layout-grid">
-            <div><div id="radar-chart" class="chart-box"></div></div>
-            <div class="narrative-annotations">
-                <h4>🎯 交叉层面的特征分布</h4>
-                <ul>
-                    <li><strong>考研群体的体制内与传媒优势：</strong> 考研转身的同学在政府/体制内（均薪8,310元）和媒体/传媒（均薪8,480元）赛道展现了良好的适应性，大幅拉高了整体薪资。</li>
-                    <li><strong>直接就业群体的跨境商务壁垒：</strong> 直接就业的实战派在外贸/跨境商务领域的起薪远超留学生与考研生，证明早期社会经验在落地的商务洽谈中具有较高含金量。</li>
-                    <li><strong>留学生薪资被拉低的原因：</strong> 数据显现出核心原因：出国留学的群体有相当一部分最终涌入了起薪偏低的教育培训机构，且在教育机构内的均薪（6,420元）大幅落后于国内考研生。</li>
-                </ul>
+        <section id="chapter2-5" class="narrative-section">
+            <div class="section-title">过渡幕：多维决策效能 ➔ 三大意向群体在各行业的具体起薪表现</div>
+            <div class="section-desc">通过网格矩阵分析当毕业初始背景融入不同就业领域后，其薪资议价能力的重叠与优势交错。</div>
+            <div class="content-grid">
+                <div><div id="radar-chart" class="chart-container"></div></div>
+                <div class="insights-box">
+                    <h4>💡 交叉优势发现</h4>
+                    <ul>
+                        <li><strong>考研毕业生的核心卡位：</strong> 考研生在媒体/传媒（均薪8,480元）和政府体制内（均薪8,310元）表现出卓越的匹配度。</li>
+                        <li><strong>直接就业群体的实战壁垒：</strong> 直接就业人群在外贸跨境领域的薪资表现显著超出其他群体，证明早期实践经验在外语贸易领域的不可替代性。</li>
+                        <li>留学生群体涌入教育机构后的起薪（均薪6,420元）大幅偏低，是整体拉低留学生财富中枢的根本原因。</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="narrative-chapter" style="border-left: 6px solid #d97706;">
-        <div class="chapter-badge" style="background:#fef3c7; color:#d97706;">时间节点 T3：职场命运的全景交互</div>
-        <div class="chapter-title">核心幕：命运的长河 ➔ 200位毕业生的完整因果演变全景</div>
-        <div class="chapter-lead">
-            现在，让我们把所有的孤立片段全部编织起来。下方的桑基图将中间的行业节点根据毕业生的初始背景进行了全面拆分和因果追踪。从最左侧的毕业初始意向，到中段行业角力的细分战场，再到最右侧沉淀下来的四个薪资阶层，一条脉络清晰可见的命运长河在此处汇流。
-        </div>
-        <div class="layout-grid layout-full">
-            <div><div id="sankey-chart"></div></div>
-        </div>
-    </div>
-
-    <div class="story-epilogue">
-        <h2>✨ 大数据驱动的因果启示</h2>
-        <p>
-            通过对这条因果长河的纵深拆解，我们得到了一个发现：在斩获 10k 以上最高薪资池的 17 名破局者中，人数最多的是直接就业出身的外贸群体（4人）和国内考研转身的媒体群体（4人），而高预期的出国深造学学子在此处并未展现出绝对的压倒性优势。大数据用因果链条提示我们：当前英语专业的职场突围，并不完全取决于学历外壳的包装成本，而取决于你是否能在毕业之初，果断卡位复合型新媒体、落地的跨境商务以及稳健的体制内赛道。
-        </p>
-    </div>
-</div>
+        <section id="chapter3" class="narrative-section">
+            <div class="section-title">核心幕：命运的长河 ➔ 200位毕业生的意向变迁与财富分布因果全景</div>
+            <div class="section-desc">将各层级逻辑节点打通，并将中间行业节点按其出身背景进行全面拆分，还原清晰的因果链条长河。</div>
+            <div class="content-grid content-full">
+                <div><div id="sankey-chart"></div></div>
+            </div>
+        </section>
+    </main>
 
 <script type="text/javascript">
     window.onload = function() {
@@ -226,51 +254,46 @@
             tooltip: { trigger: 'item', formatter: '{b} : {c}人 ({d}%)' },
             legend: { top: '5%', data: ['直接就业', '国内考研', '出国深造'] },
             series: [{
-                type: 'pie', radius: ['45%', '75%'], avoidLabelOverlap: false,
-                itemStyle: { borderRadius: 8, borderColor: '#fff', borderWidth: 2 },
+                type: 'pie', radius: ['45%', '70%'],
+                itemStyle: { borderRadius: 6, borderColor: '#fff', borderWidth: 2 },
                 label: { show: true, formatter: '{b}\n({d}%)' },
                 data: [
-                    { value: 70, name: '直接就业', itemStyle:{color:'#513b56'} },
-                    { value: 77, name: '国内考研', itemStyle:{color:'#52de97'} },
-                    { value: 53, name: '出国深造', itemStyle:{color:'#438a5e'} }
+                    { value: 70, name: '直接就业', itemStyle:{color:'#1e3a8a'} },
+                    { value: 77, name: '国内考研', itemStyle:{color:'#10b981'} },
+                    { value: 53, name: '出国深造', itemStyle:{color:'#64748b'} }
                 ]
             }]
         });
 
-        // --- 2. 初始意向起薪精确分布图（标准气泡图） ---
+        // --- 2. 初始意向起薪极值对比图 ---
         var scatterChart = echarts.init(document.getElementById('scatter-chart'));
         scatterChart.setOption({
             tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
             legend: { data: ['最高起薪', '平均起薪', '最低起薪'], bottom: '0' },
-            grid: { top: '10%', bottom: '15%', left: '10%', right: '5%' },
+            grid: { top: '10%', bottom: '15%', left: '12%', right: '5%' },
             xAxis: { type: 'category', data: ['直接就业', '国内考研', '出国深造'] },
             yAxis: { type: 'value', name: '起薪 (元)', min: 2000, max: 14000 },
             series: [
-                { name: '最高起薪', type: 'bar', barGap: '0', data: [13028, 12586, 13385], itemStyle: { color: '#e67e22' } },
-                { name: '平均起薪', type: 'bar', data: [8044, 8152, 7436], itemStyle: { color: '#3498db' } },
-                { name: '最低起薪', type: 'bar', data: [2451, 3711, 2127], itemStyle: { color: '#e74c3c' } }
+                { name: '最高起薪', type: 'bar', barGap: '0', data: [13028, 12586, 13385], itemStyle: { color: '#d97706' } },
+                { name: '平均起薪', type: 'bar', data: [8044, 8152, 7436], itemStyle: { color: '#1e3a8a' } },
+                { name: '最低起薪', type: 'bar', data: [2451, 3711, 2127], itemStyle: { color: '#ef4444' } }
             ]
         });
 
         // --- 3. 行业人数与均薪双轴图 ---
         var barChart = echarts.init(document.getElementById('bar-chart'));
         barChart.setOption({
-            tooltip: { 
-                trigger: 'axis', axisPointer: { type: 'shadow' },
-                formatter: function(params) {
-                    return params[0].name + '<br/>' + params[0].seriesName + ': ' + params[0].value + ' 人<br/>' + params[1].seriesName + ': ' + params[1].value + ' 元';
-                }
-            },
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
             legend: { data: ['吸纳人数', '平均起薪'], bottom: '0' },
-            grid: { top: '12%', bottom: '15%', left: '10%', right: '12%' },
+            grid: { top: '12%', bottom: '15%', left: '12%', right: '12%' },
             xAxis: [{ type: 'category', data: ['媒体/传媒', '政府/体制内', '外贸/跨境', '互联网/科技', '教育/培训'] }],
             yAxis: [
                 { type: 'value', name: '人数', min: 0, max: 50 },
                 { type: 'value', name: '均薪', min: 7000, max: 8500 }
             ],
             series: [
-                { name: '吸纳人数', type: 'bar', barWidth: '35%', data: [41, 43, 40, 44, 32], itemStyle: { color: '#1e293b' } },
-                { name: '平均起薪', type: 'line', yAxisIndex: 1, symbol: 'circle', symbolSize: 8, data: [8234, 8042, 7996, 7746, 7527], lineStyle: { width: 3, color: '#e67e22' }, itemStyle: { color: '#e67e22' } }
+                { name: '吸纳人数', type: 'bar', barWidth: '35%', data: [41, 43, 40, 44, 32], itemStyle: { color: '#1e3a8a' } },
+                { name: '平均起薪', type: 'line', yAxisIndex: 1, symbol: 'circle', symbolSize: 8, data: [8234, 8042, 7996, 7746, 7527], lineStyle: { width: 3, color: '#d97706' }, itemStyle: { color: '#d97706' } }
             ]
         });
 
@@ -293,23 +316,23 @@
             series: [{
                 type: 'radar',
                 data: [
-                    { value: [8120, 8150, 8430, 7810, 7650], name: '直接就业者', itemStyle: {color: '#513b56'}, lineStyle: {width: 2} },
-                    { value: [8480, 8310, 7860, 7920, 8100], name: '国内考研者', itemStyle: {color: '#52de97'}, lineStyle: {width: 2} },
-                    { value: [7950, 7120, 7450, 7350, 6420], name: '出国留学者', itemStyle: {color: '#438a5e'}, lineStyle: {width: 2} }
+                    { value: [8120, 8150, 8430, 7810, 7650], name: '直接就业者', itemStyle: {color: '#1e3a8a'}, lineStyle: {width: 2} },
+                    { value: [8480, 8310, 7860, 7920, 8100], name: '国内考研者', itemStyle: {color: '#10b981'}, lineStyle: {width: 2} },
+                    { value: [7950, 7120, 7450, 7350, 6420], name: '出国留学者', itemStyle: {color: '#64748b'}, lineStyle: {width: 2} }
                 ]
             }]
         });
 
-        // --- 5. 核心因果全追踪桑基图 ---
+        // --- 5. 因果全追踪桑基图 ---
         var sankeyChart = echarts.init(document.getElementById('sankey-chart'));
         sankeyChart.setOption({
             tooltip: { 
                 trigger: 'item', triggerOn: 'mousemove',
                 formatter: function (params) {
                     if (params.dataType === 'node') {
-                        return '<b>' + params.name + '</b><br/>阶段总人数: ' + params.value + ' 人';
+                        return '<b>' + params.name + '</b><br/>群体总计: ' + params.value + ' 人';
                     } else {
-                        return params.data.source + ' ➔ ' + params.data.target + '<br/><b>流量: ' + params.data.value + ' 人</b>';
+                        return params.data.source + ' ➔ ' + params.data.target + '<br/><b>流向流量: ' + params.data.value + ' 人</b>';
                     }
                 }
             },
@@ -318,34 +341,34 @@
                 emphasis: { focus: 'adjacency' },
                 nodeGap: 14,
                 data: [
-                    {name: '直接就业', itemStyle: {color: '#513b56'}}, 
-                    {name: '国内考研', itemStyle: {color: '#52de97'}}, 
-                    {name: '出国深造', itemStyle: {color: '#438a5e'}},
+                    {name: '直接就业', itemStyle: {color: '#1e3a8a'}}, 
+                    {name: '国内考研', itemStyle: {color: '#10b981'}}, 
+                    {name: '出国深造', itemStyle: {color: '#64748b'}},
                     
-                    {name: '互联网(考研出身)', itemStyle: {color: '#1b4332'}},
-                    {name: '互联网(深造出身)', itemStyle: {color: '#2d6a4f'}},
-                    {name: '互联网(就业出身)', itemStyle: {color: '#40916c'}},
+                    {name: '互联网(考研出身)', itemStyle: {color: '#065f46'}},
+                    {name: '互联网(深造出身)', itemStyle: {color: '#047857'}},
+                    {name: '互联网(就业出身)', itemStyle: {color: '#10b981'}},
                     
-                    {name: '外贸(考研出身)', itemStyle: {color: '#0077b6'}},
-                    {name: '外贸(深造出身)', itemStyle: {color: '#0096c7'}},
-                    {name: '外贸(就业出身)', itemStyle: {color: '#03045e'}},
+                    {name: '外贸(考研出身)', itemStyle: {color: '#1e40af'}},
+                    {name: '外贸(深造出身)', itemStyle: {color: '#2563eb'}},
+                    {name: '外贸(就业出身)', itemStyle: {color: '#1d4ed8'}},
                     
-                    {name: '媒体(考研出身)', itemStyle: {color: '#ffb703'}},
-                    {name: '媒体(深造出身)', itemStyle: {color: '#fb8500'}},
-                    {name: '媒体(就业出身)', itemStyle: {color: '#fcbf49'}},
+                    {name: '媒体(考研出身)', itemStyle: {color: '#b45309'}},
+                    {name: '媒体(深造出身)', itemStyle: {color: '#d97706'}},
+                    {name: '媒体(就业出身)', itemStyle: {color: '#f59e0b'}},
                     
-                    {name: '体制内(考研出身)', itemStyle: {color: '#e63946'}},
-                    {name: '体制内(深造出身)', itemStyle: {color: '#f1faee'}},
-                    {name: '体制内(就业出身)', itemStyle: {color: '#a8dadc'}},
+                    {name: '体制内(考研出身)', itemStyle: {color: '#991b1b'}},
+                    {name: '体制内(深造出身)', itemStyle: {color: '#ef4444'}},
+                    {name: '体制内(就业出身)', itemStyle: {color: '#b91c1c'}},
                     
-                    {name: '教育(考研出身)', itemStyle: {color: '#6d597a'}},
-                    {name: '教育(深造出身)', itemStyle: {color: '#b56576'}},
-                    {name: '教育(就业出身)', itemStyle: {color: '#e56b6f'}},
+                    {name: '教育(考研出身)', itemStyle: {color: '#475569'}},
+                    {name: '教育(深造出身)', itemStyle: {color: '#64748b'}},
+                    {name: '教育(就业出身)', itemStyle: {color: '#94a3b8'}},
                     
-                    {name: '薪资: <6k', itemStyle: {color: '#e74c3c'}}, 
-                    {name: '薪资: 6k-8k', itemStyle: {color: '#f1c40f'}}, 
-                    {name: '薪资: 8k-10k', itemStyle: {color: '#3498db'}}, 
-                    {name: '薪资: >10k', itemStyle: {color: '#2ecc71'}}
+                    {name: '薪资: <6k', itemStyle: {color: '#ef4444'}}, 
+                    {name: '薪资: 6k-8k', itemStyle: {color: '#f59e0b'}}, 
+                    {name: '薪资: 8k-10k', itemStyle: {color: '#3b82f6'}}, 
+                    {name: '薪资: >10k', itemStyle: {color: '#10b981'}}
                 ],
                 links: [
                     {source: '国内考研', target: '互联网(考研出身)', value: 15},
@@ -363,6 +386,7 @@
                     {source: '直接就业', target: '互联网(就业出身)', value: 14},
                     {source: '直接就业', target: '外贸(就业出身)', value: 15},
                     {source: '直接就业', target: '媒体(就业出身)', value: 13},
+                    {source: '直接就业', target: '政府/体制内', value: 17}, // Fallback connector check
                     {source: '直接就业', target: '体制内(就业出身)', value: 17},
                     {source: '直接就业', target: '教育(就业出身)', value: 11},
                     
@@ -386,12 +410,12 @@
                     {source: '教育(深造出身)', target: '薪资: <6k', value: 3}, {source: '教育(深造出身)', target: '薪资: 6k-8k', value: 3}, {source: '教育(深造出身)', target: '薪资: 8k-10k', value: 3}, {source: '教育(深造出身)', target: '薪资: >10k', value: 1},
                     {source: '教育(就业出身)', target: '薪资: <6k', value: 2}, {source: '教育(就业出身)', target: '薪资: 6k-8k', value: 3}, {source: '教育(就业出身)', target: '薪资: 8k-10k', value: 4}, {source: '教育(就业出身)', target: '薪资: >10k', value: 2}
                 ],
-                lineStyle: { color: 'source', curveness: 0.5, opacity: 0.25 },
+                lineStyle: { color: 'source', curveness: 0.5, opacity: 0.22 },
                 label: { position: 'right', color: '#0f172a', fontSize: 11, fontWeight: 'bold' }
             }]
         });
 
-        // 响应式缩放
+        // 自动缩放
         window.addEventListener('resize', function() {
             pieChart.resize(); scatterChart.resize(); barChart.resize(); radarChart.resize(); sankeyChart.resize();
         });
