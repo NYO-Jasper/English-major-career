@@ -12,8 +12,10 @@
             margin: 0;
             padding: 0;
             color: #334155;
-            display: flex;
+            display: flex; /* 专业双栏看板布局 */
         }
+        
+        /* 左侧高亮控制台导航栏 */
         .sidebar {
             width: 290px;
             height: 100vh;
@@ -59,14 +61,19 @@
             color: white;
             box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
         }
+        
+        /* 右侧流式内容大屏区域 */
         .main-content {
             margin-left: 290px;
+            margin-right: 0;
             flex: 1;
             padding: 40px;
             box-sizing: border-box;
             scroll-behavior: smooth;
             max-width: 1200px;
         }
+        
+        /* 报告大封面 */
         .story-header {
             background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
             color: white;
@@ -77,6 +84,8 @@
         }
         .story-header h1 { margin: 0; font-size: 2.2rem; font-weight: 800; line-height: 1.4; }
         .story-header p { margin: 12px 0 0 0; opacity: 0.85; font-size: 1.1rem; }
+        
+        /* 核心指标看板大盘 */
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -95,6 +104,8 @@
         .metric-card:hover { transform: translateY(-2px); }
         .metric-card h3 { margin: 0; color: #64748b; font-size: 0.88rem; }
         .metric-card .value { font-size: 1.7rem; font-weight: 700; margin-top: 10px; color: #0f172a; }
+
+        /* 叙事卡片通用样式 */
         .narrative-section {
             background: white;
             padding: 40px;
@@ -103,6 +114,10 @@
             margin-bottom: 40px;
             border: 1px solid #e2e8f0;
             scroll-margin-top: 40px;
+            transition: box-shadow 0.3s ease;
+        }
+        .narrative-section:hover {
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
         }
         .section-title {
             font-size: 1.4rem;
@@ -119,6 +134,8 @@
             margin-bottom: 30px;
             text-align: justify;
         }
+        
+        /* 图文网格布局 */
         .content-grid {
             display: grid;
             grid-template-columns: 1.25fr 0.85fr;
@@ -145,7 +162,7 @@
         .insights-box ul { padding-left: 18px; margin: 0; }
         .insights-box li { margin-bottom: 12px; font-size: 0.95rem; line-height: 1.65; color: #475569; }
         
-        /* 排版精细化改良：采用等分弹性盒，彻底消除单个排位溢出空缺 */
+        /* 画像卡片等分弹性盒 */
         .avatar-flex-container {
             display: flex;
             justify-content: space-between;
@@ -159,7 +176,7 @@
             border-radius: 12px;
             border: 1px solid #e2e8f0;
             border-left: 5px solid #1e3a8a;
-            flex: 1; /* 完美水平等分 */
+            flex: 1;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         .avatar-card:hover { 
@@ -181,25 +198,25 @@
 <body>
 
     <nav class="sidebar">
-        <div class="sidebar-brand">📊 研究主线索引</div>
+        <div class="sidebar-brand">数据研究看板</div>
         <ul class="sidebar-menu">
-            <li><a href="#overview">⏱️ 全景数据看板</a></li>
-            <li><a href="#research-intro">📖 引言 · 研究界定</a></li>
-            <li><a href="#act1-setup">🎯 起点 · 人力资本分流</a></li>
-            <li><a href="#act1-5">⚖️ 穿透 · 起薪风险对比</a></li>
-            <li><a href="#act2-conflict">💼 承载 · 行业市场吸纳</a></li>
-            <li><a href="#act3-震荡">📊 分配 · 起薪弹性波幅</a></li>
-            <li><a href="#act4-效能">🗺️ 交叉 · 决策效益矩阵</a></li>
-            <li><a href="#act5-resolution">🌊 融汇 · 初始因果流向</a></li>
-            <li><a href="#profiles">👤 缩影 · 微观生命画像</a></li>
-            <li><a href="#prospects">🚀 策略 · 未来发展指南</a></li>
+            <li><a href="#overview">全景数据概览</a></li>
+            <li><a href="#research-intro">一、 研究背景与基准界定</a></li>
+            <li><a href="#act1-setup">二、 初始出路的人力资本分流</a></li>
+            <li><a href="#act1-5">三、 不同决策路径的收益胜率</a></li>
+            <li><a href="#act2-conflict">四、 宏观用人行业的吸纳容量</a></li>
+            <li><a href="#act3-震荡">五、 行业初始起薪的波动幅值</a></li>
+            <li><a href="#act4-效能">六、 路径与领域的交叉回报热力</a></li>
+            <li><a href="#act5-resolution">七、 人力资本与财富因果合流全景</a></li>
+            <li><a href="#profiles">八、 典型微观生命轨迹画像</a></li>
+            <li><a href="#prospects">九、 数据驱动的生涯行动指南</a></li>
         </ul>
     </nav>
 
     <main class="main-content">
         <div id="overview" class="story-header">
             <h1>学历溢价与经验壁垒：英语专业毕业生高等教育投资回报与初始起薪分化研究</h1>
-            <p>基于 200 份对齐同一起跑线（各自走出象牙塔毕业当下首份校招薪酬）的深度因果追踪研究</p>
+            <p>基于 200 份对齐同一起跑线的深度因果追踪研究</p>
         </div>
 
         <div class="dashboard-grid">
@@ -210,7 +227,7 @@
         </div>
 
         <section id="research-intro" class="narrative-section">
-            <div class="section-title">引言：研究问题与基准界定</div>
+            <div class="section-title">一、 研究背景与基准界定</div>
             <div class="section-desc">
                 在经典的人力资本理论中，“提升学历”通常被视为获取薪酬溢价和抵御就业风险的最有效投资。然而，伴随着全球外语类专业人才培养同质化趋势以及宏观市场结构的深度调整，英语专业学子正面临深刻的选择分水岭。
                 <br><br>
@@ -219,12 +236,12 @@
         </section>
 
         <section id="act1-setup" class="narrative-section">
-            <div class="section-title">起点：毕业抉择阶段的人力资本分流</div>
+            <div class="section-title">二、 初始出路的人力资本分流</div>
             <div class="section-desc">在走出校园的前夕，面对未知且复杂的宏观竞争，200 名英语专业的毕业生绘制了各自最初的人力资本投资蓝图。在学历竞争白热化的环境下，“加码教育外壳、延缓进入市场”成为了压倒性的主流，超过六成的毕业生试图通过长线深造来寻求未来的安全壁垒。</div>
             <div class="content-grid">
                 <div><div id="pie-chart" class="chart-container"></div></div>
                 <div class="insights-box">
-                    <h4>💡 教育投资结构事实</h4>
+                    <h4>教育投资结构事实</h4>
                     <ul>
                         <li>选择<strong>国内读研（77人）</strong>与<strong>出国深造（53人）</strong>的人数合并占比高达 <strong>65%</strong>，构成了群体最为主流的避险行为。</li>
                         <li><strong>选择直接就业</strong>的群体沦为 <strong>35%</strong>（70人）的少数派，折射出文科生毕业时普遍存在的经验议价恐慌。</li>
@@ -234,7 +251,7 @@
         </section>
 
         <section id="act1-5" class="narrative-section">
-            <div class="section-title">穿透：不同路径初始起薪的层级结构对比</div>
+            <div class="section-title">三、 不同决策路径的收益胜率</div>
             <div class="section-desc">当初始出路落地转化为真实的职场回报，群体内部的薪资分档比例呈现出垂直递进的阶梯结构。通过对直接就业、国内读研与出国深造三组独立人群的起薪级差进行金字塔漏斗解构，能够直观地量化不同路径在中高薪收益区与低薪风险区中的沉淀广度。</div>
             <div class="content-grid content-full">
                 <div class="pyramid-grid">
@@ -243,7 +260,7 @@
                     <div id="pyramid-abroad" class="pyramid-container"></div>
                 </div>
                 <div class="insights-box" style="margin-top: 25px;">
-                    <h4>💡 路径结构层级定量透视</h4>
+                    <h4>路径结构层级定量透视</h4>
                     <ul>
                         <li><strong>国内读研在中高层展现强聚合力</strong>：国内读研金字塔的中部“核心获益池（50.6%）”基座极宽，且底部的“低薪风险池（10.4%）”收缩极为剧烈，证实了本土学历标签对初始起薪下限的强力托底效能。</li>
                         <li><strong>直接就业的顶层渗透率最高</strong>：在金字塔最尖端的“顶尖高薪池（17.1%）”中，直接就业组展现出优于深造组的向上突破比例，反映出前线经验的溢价爆发力。</li>
@@ -254,28 +271,28 @@
         </section>
 
         <section id="act2-conflict" class="narrative-section">
-            <div class="section-title">承载：各路径毕业落地行业的消化规模与平均起薪</div>
+            <div class="section-title">四、 宏观用人行业的吸纳容量</div>
             <div class="section-desc">当所有样本（包含大四直接就业派与随后学成归来的深造派）悉数步入社会，宏观市场的五大用人蓄水池重新解构并吸收了这股力量。岗位在各自毕业当下的吸纳容量和起薪天花板展开了激烈的地盘拉锯。</div>
             <div class="content-grid">
                 <div><div id="bar-chart" class="chart-container"></div></div>
                 <div class="insights-box">
-                    <h4>💡 行业承载与溢价冲突</h4>
+                    <h4>行业承载与溢价冲突</h4>
                     <ul>
-                        <li><strong>互联网科技（44人）</strong>吸纳规模最大，但给刚走出校园者的初始起薪均薪（7,746元）却滑落至倒数第二，显现出大厂对于纯外语背景岗位溢价包容度的快速见顶。</li>
+                        <li><strong>互联网科技（44人）</strong>吸纳规模最大，然而给予刚走出校园者的初始起薪均薪（7,746元）却滑落至倒数第二，显现出大厂对于纯外语背景岗位溢价包容度的快速见顶。</li>
                         <li><strong>媒体/传媒行业（41人）</strong>展现了强劲的虹吸效应，在吸收高比例毕业人才的同时，以 <strong>8,234元</strong> 的初始起薪高居全场榜首，成为新灯塔。</li>
-                        <li><strong>教育培训行业（32人）</strong>不仅消化容量大幅功能性收缩，起薪均薪（7,527元）更是全场垫底。</li>
+                        <li><strong>教育培训行业（32人）</strong>不仅消化容量大幅功能性收缩，起薪均薪（7,527元）更是全场底。</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <section id="act3-震荡" class="narrative-section">
-            <div class="section-title">分配：起薪弹性波幅分布与统计异常值诊断</div>
+            <div class="section-title">五、 行业初始起薪的波动幅值</div>
             <div class="section-desc">均薪的假象在起薪区间分布里被彻底扯碎。通过标准统计学箱线图，我们可以清晰看到毕业生跨越不同学历门槛毕业时，不同行业展现出的真实薪资区间、防守底线，以及三个极为显著的统计学异类值。</div>
             <div class="content-grid">
                 <div><div id="box-chart" class="chart-container"></div></div>
                 <div class="insights-box">
-                    <h4>💡 薪资区间震荡分布事实</h4>
+                    <h4>薪资区间震荡分布事实</h4>
                     <ul>
                         <li><strong>媒体行业最为稳健：</strong> 其初始薪资中位数重心整体偏高，且下限极高（4,692元），说明该赛道对高学历及英专复合人才给出了扎实的普惠性初始回报。</li>
                         <li><strong>教培行业的下限探底：</strong> 整个教育行业箱体呈现剧烈的拉伸两极化，其初始薪资底线下坠至全场最低的 <strong>2,127元</strong>，生存线严峻。</li>
@@ -286,12 +303,12 @@
         </section>
 
         <section id="act4-效能" class="narrative-section">
-            <div class="section-title">交叉：决策路径与就业领域的投资回报率矩阵</div>
+            <div class="section-title">六、 路径与领域的交叉回报热力</div>
             <div class="section-desc">由于严格锁定了同一起跑线的“初始毕业起薪”，不同学历路径投入与最终落地领域的交叉投资回报效能被赤裸裸地量化。矩阵颜色越深代表最终毕业当下的首份起薪均薪越高。它清晰地揭示了学历标签在不同实战壁垒赛道上的效能分化。</div>
             <div class="content-grid">
                 <div><div id="heatmap-chart" class="chart-container"></div></div>
                 <div class="insights-box">
-                    <h4>💡 决策组合的回报效能事实</h4>
+                    <h4>决策组合的回报效能事实</h4>
                     <ul>
                         <li><strong>外贸赛道的实战议价权：</strong> 本科【直接就业 ➔ 外贸跨境商务】的初始毕业起薪高达 <strong>8,622.12元</strong>。事实证明，在外贸这种重实战、重客户关系的赛道，大四毕业直接杀入前线累积经验的实战派，其起薪议价权直接体现。</li>
                         <li><strong>读研功底的本土防御力：</strong> 【国内读研 ➔ 政府体制/媒体】学成出来的初始起薪双双突破 <strong>8,400元</strong>，反超了本科直接就业组。证明国内研究生期间沉淀的中英文双语申论、精读、跨国媒介笔译功底，能够转化为体制内考试和内容出海大厂的硬溢价。</li>
@@ -302,7 +319,7 @@
         </section>
 
         <section id="act5-resolution" class="narrative-section">
-            <div class="section-title">融汇：200位英专毕业生跨越整个教育周期的初始因果流向</div>
+            <div class="section-title">七、 人力资本与财富因果合流全景</div>
             <div class="section-desc">这是一幅跨越时空的宏观流向长河。大四时那汪由选择组成的初始溪流，如何跨越时空和各自不同的毕业季，交织流入社会的五大吸收池，并最终沉淀为同一起跑线下的初始高低薪酬席位，在此处一览无余。线条的粗细，丈量着财富的因果闭环与选择图景。</div>
             <div class="content-grid content-full">
                 <div><div id="sankey-chart"></div></div>
@@ -310,7 +327,7 @@
         </section>
 
         <section id="profiles" class="narrative-section">
-            <div class="section-title">缩影：财富数据背后折射的微观生命画像</div>
+            <div class="section-title">八、 典型微观生命轨迹画像</div>
             <div class="section-desc">
                 宏大的统计学长河最终是由一个个具体而鲜活的生命选择凝聚而成。在“刚出校门结算第一份工资”的同一起点上，这三个从数据中提炼出的典型个体画像，正是抉择落地后最生动的生命写照：
             </div>
@@ -318,23 +335,23 @@
                 <div class="avatar-card green">
                     <h5>👤 “长线学历投资获益者” —— 小 A</h5>
                     <div class="tag">国内读研 ➔ 媒体传媒 ➔ 毕业起薪 8,500元</div>
-                    <p>小 A 在大四毕业时定下战略长线投资，成功上岸国内硕士。在完成两至三年的研究生深造后，他今年夏季拿到硕士学位步入职场结算第一份工资。凭借更高的学历标签以及备考期间沉淀的扎实双语深度写作实力，他在主流媒体大厂的内容出海岗位中拿到了 8,500 元的丰厚起薪。他的故事证明，在极度注重底层文字功底的赛道，本土长线学历投资依然具备极高的初始变现红利。</p>
+                    <p>小 A 在大四毕业时定下战略长线投资，成功上岸国内硕士。在完成两至三年的研究生深造后，他完成学业步入职场结算第一份工资。凭借更高的学历标签以及备考期间沉淀的扎实双语深度写作实力，他在主流媒体大厂的内容出海岗位中拿到了 8,500 元的丰厚起薪。这证明，在极度注重底层文字功底的赛道，本土长线学历投资依然具备极高的初始变现红利。</p>
                 </div>
                 <div class="avatar-card">
-                    <h5>👤 “实战壁垒破局者” —— 小 B</h5>
+                    <h5>👤 “经验护城河先行派” —— 小 B</h5>
                     <div class="tag">直接就业 ➔ 跨境商务 ➔ 毕业起薪 11,200元</div>
-                    <p>大四时小 B 目标极明确地在本科毕业的那个夏天直接步入外贸前线。在不需要学历虚名的跨境贸易赛道，他作为“行动派”，凭借极具狼性的落地的商务洽谈技巧、高压供应链实战经验，在本科毕业踏入职场的那一瞬间，首份校招起薪就直接轰出了 11,200 元的爆发性高分，用实战能力构筑了最强的初始护城河。</p>
+                    <p>当身边的同学在大四深陷考研、留学的焦虑时，小 B 目标极明确地在本科毕业的那个夏天直接步入外贸前线。在不需要学历虚名的跨境贸易赛道，他作为“行动派”，凭借极具狼性的落地的商务洽谈技巧、高压供应链实战经验，在本科毕业踏入职场的那一瞬间，首份校招起薪就直接轰出了 11,200 元的爆发性高分，用实战能力构筑了最强的初始护城河。</p>
                 </div>
                 <div class="avatar-card red">
                     <h5>👤 “避险错位困顿者” —— 小 C</h5>
-                    <div class="tag">出国深造 ➔ 教育培训 ➔ 毕业起薪 2,128元</div>
-                    <p>小 C 在海外拿到硕士学位回国后，在求职季中盲目跟随“英专生考教培”的陈旧偏见，涌入了产能收缩的基础教育辅导机构。在面临激烈产能调整的教培赛道里，由于高昂金钱教育投资与缺乏硬商务实战经验错位，他在刚毕业迈入职场结算首份起薪的那一刻，月薪直接坍塌至全场最低的 2,128 元，沦为象牙塔高投入避险错位的现实警示。</p>
+                    <div class="tag">出国深造 ➔ 核心教培 ➔ 毕业起薪 2,128元</div>
+                    <p>小 C 家庭在大四时耗费巨资支持他出国深造。在海外拿到硕士学位回国后，他在求职季中选择涌入了产能收缩的基础教育辅导机构。在面临激烈产能调整的教培赛道里，由于高昂金钱教育投资与缺乏硬商务实战经验错位，他在刚毕业迈入职场结算首份起薪的那一刻，月薪直接坍塌至全场最低的 2,128元，沦为象牙塔高投入避险错位的现实警示。</p>
                 </div>
             </div>
         </section>
 
         <section id="prospects" class="narrative-section" style="border-top: 4px solid #10b981;">
-            <div class="section-title" style="border-left-color: #10b981;">策略：理性突围 ➔ 大数据驱动的英专生择业策略指南</div>
+            <div class="section-title" style="border-left-color: #10b981;">九、 数据驱动的生涯行动指南</div>
             <div class="section-desc">
                 本研究的终极目的，是借由大数据关于教育资本同一起跑线初始毕业起薪的因果实证，为未来的英语专业学子指明职业道路。面对财富分化，学子的卡位动作必须彻底告别盲目的学历包装执念，走向精密的跨界卡位：
             </div>
@@ -345,11 +362,11 @@
                 </li>
                 <li>
                     <strong>二、 提升实战壁垒，提前布局落地的跨境商务</strong>
-                    如果自身不打算走学术路线，建议大四阶段果断舍弃盲目留学和跟风考研的执念，以“行动派”姿态直接进入跨境电商、国际供应链管理等前线。外贸行业具备高佣金与高爆发性，早一年的实战经验沉淀，能直接转化为对抗高学历内卷的坚实护城河。
+                    如果自身不打算走学术路线，建议大四阶段果断舍弃盲目留学和跟风考研的执念，以“行动派”姿态直接进入跨境电商、国际供应链管理等前线。外贸行业具备高爆发性，早一年的实战经验沉淀，能直接转化为对抗高学历内卷的坚实护城河。
                 </li>
                 <li>
                     <strong>三、 强化本土学历防御力，对准体制与大厂核心管理</strong>
-                    研究数据表明本土考研生在用人市场上底线防守力极强（低薪率仅10.4%）。对于追求低风险的同学，应当将考研作为长线战略，但研究生阶段应重点积累行政素养和品牌公关能力，毕业后对准政府体制内和互联网核心管理赛道，最大化发挥本土高学历的溢价红利。
+                    研究数据表明本土考研生在用人市场上底线防守力极强（低薪率仅10.4%）。对于追求低风险的同学，应当将考研作为长线战略，按计划稳扎稳打，毕业后对准政府体制内和互联网核心管理赛道，最大化发挥本土学历的防御红利。
                 </li>
             </ul>
         </section>
@@ -357,7 +374,7 @@
 
 <script type="text/javascript">
     window.onload = function() {
-        // --- 1. 初始意向：经典纯实心饼图 ---
+        // --- 1. 初始意向饼图 ---
         var pieChart = echarts.init(document.getElementById('pie-chart'));
         pieChart.setOption({
             tooltip: { trigger: 'item', formatter: '{b} : {c}人 ({d}%)' },
